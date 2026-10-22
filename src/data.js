@@ -1,3 +1,7 @@
+// 资源路径统一走 asset()：dev / Vercel 用 '/'，GitHub Pages 项目站点是 '/<repo>/'。
+// Vite 的 base 只会重写 import 进来的资源；字符串里写死的 '/thumbs/x.png' 不会被改写，会 404。
+const BASE = import.meta.env.BASE_URL || '/'
+export const asset = (p) => BASE + String(p).replace(/^\/+/, '')
 export const profile = {
   name: '林鑫祥',
   monogram: 'LX',
@@ -71,7 +75,7 @@ export const projects = [
     id: '01',
     title: '诊小通 Agent',
     subtitle: '多智能体医疗服务平台',
-    image: '/thumbs/01-zhenxiao.png',
+    image: asset('/thumbs/01-zhenxiao.png'),
     summary:
       '7 个专职 Agent 用 LangGraph 编排，检索与联网并行 fan-out；五级降级链保证没有 API Key 时依旧给出可用回答。',
     metrics: [
@@ -85,8 +89,8 @@ export const projects = [
       period: '2026.03 — 2026.09',
       stack: 'FastAPI · LangGraph · Qwen · Vue3 · MySQL',
       video: {
-        src: '/media/01-zhenxiao.mp4',
-        poster: '/media/01-zhenxiao-poster.png',
+        src: asset('/media/01-zhenxiao.mp4'),
+        poster: asset('/media/01-zhenxiao-poster.png'),
         duration: 152,
         autoplay: false,
         caption: '实机演示',
@@ -121,7 +125,7 @@ export const projects = [
     id: '02',
     title: '企业年报 RAG',
     subtitle: '可溯源的年报问答系统',
-    image: '/thumbs/02-rag.png',
+    image: asset('/thumbs/02-rag.png'),
     summary:
       '父子块检索 + 向量与 BM25 各占一半的混合召回，重排后只留 2 条；答案强制标注页码，跨页表格按表头指纹自动合并。',
     metrics: [
@@ -135,8 +139,8 @@ export const projects = [
       period: '2026.03 — 2026.09',
       stack: 'LangChain · Chroma · BM25 · DashScope · FastAPI',
       video: {
-        src: '/media/02-rag.mp4',
-        poster: '/media/02-rag-poster.png',
+        src: asset('/media/02-rag.mp4'),
+        poster: asset('/media/02-rag-poster.png'),
         duration: 30,
         bleed: true,
         autoplay: false,
@@ -172,7 +176,7 @@ export const projects = [
     id: '03',
     title: '电商用户行为分析',
     subtitle: '毕业设计 · 数据到决策',
-    image: '/thumbs/03-ecom.png',
+    image: asset('/thumbs/03-ecom.png'),
     summary:
       'RFM 分群、行为漏斗、品类关联、Cohort 留存四个模型全部落地并可视化；结论指向具体运营动作，而不是堆图表。',
     metrics: [
@@ -217,28 +221,28 @@ export const moreProjects = [
   {
     id: '04',
     title: '大模型应用开发实习',
-    image: '/thumbs/04-intern.png',
+    image: asset('/thumbs/04-intern.png'),
     desc: '分层 FastAPI → 文档问答 → LlamaIndex → LangGraph 工作流，14 周演进可追溯。',
     meta: '企业工程规范',
   },
   {
     id: '05',
     title: '多站点数据采集工程',
-    image: '/thumbs/05-crawl.png',
+    image: asset('/thumbs/05-crawl.png'),
     desc: 'Selenium 装进下载器中间件，渲染与解析解耦；微博转发链 548 节点 / 594 边。',
     meta: 'Scrapy · 反爬',
   },
   {
     id: '06',
     title: '宠物领养平台',
-    image: '/thumbs/06-pet.png',
+    image: asset('/thumbs/06-pet.png'),
     desc: '双端全栈 + AI 客服：实时查库注入，候选集小且要求零错误，比向量检索更可靠。',
     meta: 'FastAPI · Vue',
   },
   {
     id: '07',
     title: '数据可视化作品集',
-    image: '/thumbs/07-viz.png',
+    image: asset('/thumbs/07-viz.png'),
     desc: '空气质量交互系统 8 类视图，D3 手写 6 类图表，双塔 + Faiss 召回实验。',
     meta: 'Streamlit · D3',
   },
